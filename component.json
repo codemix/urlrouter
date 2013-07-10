@@ -1,0 +1,16 @@
+{
+  "name": "urlrouter",
+  "repo": "codemix/urlrouter",
+  "description": "Tiny URL routing",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "component/querystring": "*",
+    "component/url": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}
