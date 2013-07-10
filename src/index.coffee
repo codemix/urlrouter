@@ -187,26 +187,3 @@ module.exports = class Router
     parts.push pattern.replace escaper, "\\$&" if names.length is 0
     [(new RegExp "^\/#{parts.join('')}"), patterns, names]
 
-
-
-rtr = new Router
-rtr.add "<controller:(\\w+)>/<id:\\d+>/_<action>", (options) ->
-  console.log "HELLO", options
-rtr.add "<controller:(\\w+)>/_<action>", (options) -> console.log "HELLO 2 ", options
-rtr.add "<controller:(\\w+)>", (options) -> console.log "HELLO 3", options
-
-console.log rtr.parseUrl "/etst/123/_options"
-console.log rtr.parseUrl "/etst/_options"
-console.log rtr.parseUrl "/etst/"
-
-rtr.dispatch "/etst/123/_options"
-rtr.dispatch "/etst/_options"
-rtr.dispatch "/etst/"
-
-try
-  console.log rtr.createUrl controller: "hello", action: "whatever", id: 12
-  console.log rtr.createUrl controller: "hello", action: "whatever"
-  console.log rtr.createUrl controller: "hello"
-
-catch e
-  console.log e.stack
