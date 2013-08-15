@@ -7,7 +7,7 @@ QS = require("querystring");
 URL = require("url");
 
 stringifyURL = function(item) {
-  var url;
+  var query, url;
   url = [];
   if (item.hostname) {
     if (item.protocol) {
@@ -27,9 +27,12 @@ stringifyURL = function(item) {
   }
   if (item.query) {
     if (item.query === String(item.query)) {
-      url.push("?" + item.query);
+      query = item.query;
     } else {
-      url.push("?" + (QS.stringify(item.query)));
+      query(QS.stringify(item.query));
+    }
+    if (query.length) {
+      url.push("?" + query);
     }
   }
   if (item.hash) {

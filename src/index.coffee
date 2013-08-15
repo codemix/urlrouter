@@ -18,9 +18,11 @@ stringifyURL = (item) ->
     url.push "/"
   if item.query
     if item.query is String item.query
-      url.push "?#{item.query}"
+      query = item.query
     else
-      url.push "?#{QS.stringify item.query}"
+      query QS.stringify item.query
+    url.push "?#{query}" if query.length
+
   if item.hash
     url.push "#{item.hash}"
   url.join ''
