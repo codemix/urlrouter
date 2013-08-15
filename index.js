@@ -124,7 +124,6 @@ module.exports = Router = (function() {
     if (url.query === String(url.query)) {
       url.query = QS.parse(url.query);
     }
-    url.query || (url.query = {});
     return url;
   };
 
