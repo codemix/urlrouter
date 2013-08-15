@@ -2,7 +2,7 @@ QS = require "querystring"
 URL = require "url"
 
 
-URL.stringify = (item) ->
+stringifyURL = (item) ->
   url = []
   if item.hostname
     if item.protocol
@@ -42,8 +42,8 @@ module.exports = class Router
   ###
   dispatch: (url) ->
     url = @normalizeUrl url
-    for [parser, creator, handler] in @rules
-      if (options = parser url)
+    for [parse, creator, handler] in @rules
+      if (options = parse url)
         return handler options
     false
 
@@ -52,8 +52,8 @@ module.exports = class Router
   ###
   parseUrl: (url) ->
     url = @normalizeUrl url
-    for [parser, creator, handler] in @rules
-      if (options = parser url)
+    for [parse, creator, handler] in @rules
+      if (options = parse url)
         return options
     false
 
@@ -61,7 +61,7 @@ module.exports = class Router
   Creates a URL based on the given options
   ###
   createUrl: (options) ->
-    for [parser, creator, handler] in @rules
+    for [parse, creator, handler] in @rules
       if (url = creator options)
         return url
     false
@@ -143,7 +143,7 @@ module.exports = class Router
       url =
         pathname: "/#{pathParts.join ''}"
         query: {}
-        toString: -> URL.stringify this
+        toString: -> stringifyURL this
       if options['#']?
         url.hash = "##{options['#']}"
       for name, value of options
