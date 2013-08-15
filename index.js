@@ -29,7 +29,7 @@ stringifyURL = function(item) {
     if (item.query === String(item.query)) {
       query = item.query;
     } else {
-      query(QS.stringify(item.query));
+      query = QS.stringify(item.query);
     }
     if (query.length) {
       url.push("?" + query);

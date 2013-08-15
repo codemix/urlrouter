@@ -20,7 +20,7 @@ stringifyURL = (item) ->
     if item.query is String item.query
       query = item.query
     else
-      query QS.stringify item.query
+      query = QS.stringify item.query
     url.push "?#{query}" if query.length
 
   if item.hash
