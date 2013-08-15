@@ -72,6 +72,7 @@ module.exports = class Router
   normalizeUrl: (url) ->
     url = URL.parse url if url is String url
     url.query = QS.parse url.query if url.query is String url.query
+    url.query or= {}
     url
 
   ###
